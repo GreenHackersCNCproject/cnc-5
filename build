@@ -1,0 +1,37 @@
+#!/bin/bash
+CC=gcc
+CC_ARGS=(-Wall -Iinclude)
+
+function build(){
+	${CC} ${CC_ARGS[@]} -o obj/parser src/parser.c
+	cp obj/parser parser
+}
+
+function clean(){
+	rm -rf parser
+	rm obj/*
+}
+
+# Don't edit below here if you don't know what you're doing!
+
+function basepwd(){
+	echo -n "$(basename `pwd`)"
+}
+
+function firsttoupper(){
+	echo -n "${@}" | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'
+}
+
+function cmd(){
+	echo "$(firsttoupper $(basepwd))::$(firsttoupper $1)"
+	str="$(echo `declare -f ${1}` | sed -r 's/^(.+)\s\(\)\s\{\s//' | sed -r 's/\s\}//' | sed -r 's/\;\s/\n/g')"
+	echo $str
+	$1
+}
+
+
+if [ "${1}" == "clean" ]; then
+	cmd clean
+else
+	cmd build
+fi
