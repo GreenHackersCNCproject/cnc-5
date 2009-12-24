@@ -30,12 +30,14 @@ void CNCPrintPoint(CNCPoint p)
 {
 	int i;
 	unsigned char *data;
-	printf("x: %u\ny: %u\nz: %u\n", p.x, p.y, p.z);
+	printf("Point coordinates: (%u, %u, %u)\n\n", p.x, p.y, p.z);
 
+	printf("Binary data:\n\n");
+	printf("Byte Num |  Bits");
 	data = (unsigned char*) &p;
 	for (i = 0; i < sizeof(CNCPoint); i++) {
 		if (i % 8 == 0)
-			printf("\n%04x  ", i);
+			printf("\n%7i  |  ", (i/8)+1);
 		printf("%02x ", data[i]);
 	}
 
@@ -46,7 +48,7 @@ int main(void)
 {
 	CNCPoint p;
 
-	CNCCreatePoint(&p, 1, 2, 3);
+	CNCCreatePoint(&p, 100, 2, 3);
 
 	CNCPrintPoint(p);
 
