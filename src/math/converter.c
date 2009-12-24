@@ -1,7 +1,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-//#include <math.h>
 
 char *base2dec(char *str, int base)
 {
@@ -52,4 +51,21 @@ char *bin2dec(char *str)
 char *dec2bin(int num)
 {
   return dec2base(num, 2);
+}
+
+char *alignbin(char *str, int len)
+{
+	char *temp = malloc(sizeof(char)*strlen(str));
+	char *temp2 = malloc(sizeof(char)*strlen(str));
+	if ( strlen(str) < len ) {
+		strcpy(temp, str);
+		strcpy(temp2, str);
+		while ( strlen(temp) < len ) {
+			sprintf(temp2, "%c%s", '0', temp);
+			strcpy(temp, temp2);
+		}
+		return temp;
+	} else {
+		return str;
+	}
 }

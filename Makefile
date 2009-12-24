@@ -16,6 +16,6 @@ $(BIN): $(OBJS)
 	$(LD) $(LDFLAGS) -o $@ $(OBJS)
 
 clean:
-	-rm -f *.o $(BIN)
+	-rm -f *.o */*.o */*/*.o $(BIN)
 
 .PHONY: all clean
