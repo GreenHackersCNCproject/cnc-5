@@ -45,12 +45,6 @@ void CNCPrintPoint(CNCPoint p)
 		bin = dec2bin(temp);
 		printf("\n%7i  |  %s", (i/8)+1, alignbin(bin, 8));
 	}
-	/*for (i = 0; i < sizeof(CNCPoint); i++) {
-		if (i % 8 == 0)
-			printf("\n%7i  |  ", (i/8)+1);
-		printf("%s.", dec2bin(data[i]));
-	}*/
-
 	putchar('\n');
 }
 
