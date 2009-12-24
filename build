@@ -3,6 +3,7 @@ CC=gcc
 CC_ARGS=(-Wall -Iinclude)
 
 function build(){
+	mkdir -p obj
 	${CC} ${CC_ARGS[@]} -o obj/parser src/parser.c
 	cp obj/parser parser
 }
