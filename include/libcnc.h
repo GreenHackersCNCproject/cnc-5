@@ -2,8 +2,7 @@
 #define CNC_H
 
 #include <stdint.h>
-
-#define CNC_OPCODE_HOLE 1
+#include <opcodes.h>
 
 typedef uint16_t CNCOpcode;
 typedef uint64_t CNCOptions;

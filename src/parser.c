@@ -4,11 +4,16 @@
 
 int CNCCreateInstruction(CNCInstruction *p, CNCOpcode opcode, CNCOptions *options)
 {
+	p->magic = 0; // TODO: Figure out what in the heck this is for (@ sdkmvx, since it was your idea)
+	p->opcode = opcode;
+	p->options = *options;
+
 	return 0;
 }
 
 int CNCCreateOptions(CNCOptions *p, CNCOpcode opcode, ...)
 {
+	// What goes here?
 	return 0;
 }
 
@@ -21,14 +26,10 @@ int CNCCreatePoint(CNCPoint *p, uint32_t x, uint32_t y, uint32_t z)
 	return 0;
 }
 
-int main(void)
+void CNCPrintPoint(CNCPoint p)
 {
-	CNCPoint p;
-	unsigned char *data;
 	int i;
-
-	CNCCreatePoint(&p, 1, 2, 3);
-
+	unsigned char *data;
 	printf("x: %u\ny: %u\nz: %u\n", p.x, p.y, p.z);
 
 	data = (unsigned char*) &p;
@@ -39,5 +40,15 @@ int main(void)
 	}
 
 	putchar('\n');
+}
+
+int main(void)
+{
+	CNCPoint p;
+
+	CNCCreatePoint(&p, 1, 2, 3);
+
+	CNCPrintPoint(p);
+
 	return 0;
 }
